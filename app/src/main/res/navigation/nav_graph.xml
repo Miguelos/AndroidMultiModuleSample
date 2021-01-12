@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/beersFragment">
+
+    <fragment
+        android:id="@+id/beersFragment"
+        android:name="me.miguelos.sample.presentation.ui.beers.BeersFragment"
+        android:label="@string/title_fragment_list"
+        tools:layout="@layout/fragment_beers">
+        <action
+            android:id="@+id/action_beersFragment_to_beerDetailFragment"
+            app:destination="@id/beerDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/beerDetailFragment"
+        android:name="me.miguelos.sample.presentation.ui.beer_detail.BeerDetailFragment"
+        android:label="@string/title_fragment_detail"
+        tools:layout="@layout/fragment_beer_detail" />
+
+</navigation>

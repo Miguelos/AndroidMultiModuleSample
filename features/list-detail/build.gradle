@@ -1,0 +1,7 @@
+apply from: "$rootProject.projectDir/config-android-library.gradle"
+
+dependencies {
+
+    implementation project(path: ":features:base")
+    api project(path: ":libraries:punk-api-client")
+}

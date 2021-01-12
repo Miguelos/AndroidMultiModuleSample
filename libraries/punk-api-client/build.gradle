@@ -1,0 +1,12 @@
+plugins {
+    id 'kotlin'
+}
+
+dependencies {
+    apply from: "$rootProject.projectDir/dependencies.gradle"
+
+    okHttp()
+    retrofit()
+
+    junit()
+}

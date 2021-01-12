@@ -1,0 +1,19 @@
+apply from: "$rootProject.projectDir/config-android-library.gradle"
+
+
+dependencies {
+    apply from: "$rootProject.projectDir/dependencies.gradle"
+
+    kotlin()
+    support()
+    di()
+    rxJava()
+    lifecycle()
+    activityKtx()
+    fragmentKtx()
+    ui()
+    glide()
+
+    development()
+    testing()
+}

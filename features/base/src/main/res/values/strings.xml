@@ -1,0 +1,7 @@
+<resources>
+    <string name="title_module_base">Base</string>
+
+    <!-- Errors -->
+    <string name="exception_no_connection">Error trying to connect to the server. Check your network connection status</string>
+    <string name="exception_generic">There was an application error</string>
+</resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.beer_detail.BeerDetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/beer_cl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/screen_margin">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/detail_image_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/detail_image_height"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toTopOf="@+id/detail_name_tv"
+            app:layout_constraintEnd_toEndOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/beer_placeholder" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/detail_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_space"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/detail_description_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_image_iv"
+            tools:text="TextView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/detail_description_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/item_space"
+            android:layout_marginEnd="@dimen/screen_margin"
+            app:layout_constraintBottom_toTopOf="@+id/detail_label_abv_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_name_tv"
+            tools:text="TextView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/detail_label_abv_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/item_space"
+            android:layout_marginEnd="@dimen/item_space"
+            android:layout_marginBottom="@dimen/screen_margin"
+            android:text="@string/label_alcohol_by_volume"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/detail_abv_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_description_tv" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/detail_abv_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/screen_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/detail_label_abv_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detail_label_abv_tv"
+            app:layout_constraintTop_toTopOf="@+id/detail_label_abv_tv"
+            tools:text="4.5" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/detail_pb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.382" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

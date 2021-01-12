@@ -1,0 +1,181 @@
+def dependencyGroup(Closure closure) {
+    closure.delegate = dependencies
+    return closure
+}
+
+ext {
+    versions = [
+            // Android Plugin
+            'gradlePlugin'      : "7.0.0-alpha04",
+
+            // Kotlin
+            'kotlin'            : "1.4.30-M1",
+            'ktlint'            : "9.3.0",
+
+            // Android
+            'appcompat'         : "1.3.0-alpha02",
+            'nav'               : "2.3.2",
+            'coreKtx'           : "1.3.2",
+            'wipeRefreshLayout' : "1.1.0",
+            'recyclerView'      : "1.2.0-alpha03",
+            'lifecycle'         : "2.2.0",
+            'securityCrypto'    : "1.1.0-alpha02",
+            'room'              : "2.2.6",
+            'dataStore'         : "1.0.0-alpha04",
+            'supportAnnotations': "28.0.0",
+            'navCompose'        : "1.0.0-alpha04",
+            'fragment'          : "1.3.0-rc01",
+            'activity'          : "1.1.0",
+            'rxKotlin'          : "3.0.0",
+            'rxJava'            : "3.0.8",
+
+            // UI
+            'materialDesign'    : "1.3.0-beta01",
+            'glide'             : "4.11.0",
+            'constraintlayout'  : "2.0.4",
+
+            // DI
+            'hilt'              : "2.30.1-alpha",
+            'andXhilt'          : "1.0.0-alpha02",
+
+            // Networking
+            'retrofit'          : "2.9.0",
+            'okHttp'            : "4.9.0",
+
+            // Dev utils
+            'leakCanary'        : "2.6",
+            'timber'            : "4.7.1",
+
+            // Testing
+            'androidTest'       : "1.3.0",
+            'androidTestExt'    : "1.1.2",
+            'jUnit'             : "4.13.1",
+            'espresso'          : "3.3.0",
+            'mockito'           : "3.6.28"
+    ]
+
+    buildDep = [
+            'gradle'     : "com.android.tools.build:gradle:$versions.gradlePlugin",
+            'kotlin'     : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
+            'hilt'       : "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt",
+            'navSafeArgs': "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.nav",
+            'ktLint'     : "org.jlleitschuh.gradle:ktlint-gradle:$versions.ktlint",
+    ]
+
+    kotlin = dependencyGroup {
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+        implementation "androidx.core:core-ktx:$versions.coreKtx"
+    }
+
+    ui = dependencyGroup {
+        implementation "androidx.appcompat:appcompat:$versions.appcompat"
+        implementation "com.google.android.material:material:$versions.materialDesign"
+        implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+    }
+
+    glide = dependencyGroup {
+        implementation "com.github.bumptech.glide:glide:$versions.glide"
+        kapt "com.github.bumptech.glide:compiler:$versions.glide"
+    }
+
+    testing = dependencyGroup {
+        // DI
+        androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hilt"
+        kaptAndroidTest "com.google.dagger:hilt-android-compiler:$versions.hilt"
+
+        // JUnit
+        junit()
+
+        androidTest()
+
+        testImplementation "org.mockito:mockito-core:$versions.mockito"
+
+        // Espresso UI Testing
+        androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
+        androidTestImplementation("androidx.test.espresso:espresso-contrib:$versions.espresso") {
+            exclude group: 'com.android.support', module: 'appcompat'
+            exclude group: 'com.android.support', module: 'support-v4'
+            exclude module: 'recyclerview-v7'
+        }
+        androidTestImplementation "androidx.test.espresso:espresso-intents:$versions.espresso"
+        androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$versions.espresso"
+        api "androidx.test.espresso:espresso-idling-resource:$versions.espresso"
+    }
+
+    androidTest = dependencyGroup {
+        androidTestImplementation "androidx.test:runner:$versions.androidTest"
+        androidTestImplementation "androidx.test:rules:$versions.androidTest"
+
+        androidTestImplementation "androidx.test.ext:junit:$versions.androidTestExt"
+    }
+
+    junit = dependencyGroup {
+        testImplementation "junit:junit:$versions.jUnit"
+    }
+
+    di = dependencyGroup {
+        // Dependency Injection
+        implementation "com.google.dagger:hilt-android:$versions.hilt"
+        kapt "com.google.dagger:hilt-android-compiler:$versions.hilt"
+        implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.andXhilt"
+        kapt "androidx.hilt:hilt-compiler:$versions.andXhilt"
+    }
+
+    room = dependencyGroup {
+        implementation "androidx.room:room-runtime:$versions.room"
+        kapt "androidx.room:room-compiler:$versions.room"
+        implementation "androidx.room:room-ktx:$versions.room"
+        testImplementation "androidx.room:room-testing:$versions.room"
+    }
+
+    lifecycle = dependencyGroup {
+        implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+        implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+        implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+    }
+
+    navigation = dependencyGroup {
+        implementation "androidx.navigation:navigation-fragment-ktx:$versions.nav"
+        implementation "androidx.navigation:navigation-ui-ktx:$versions.nav"
+        implementation "androidx.navigation:navigation-dynamic-features-fragment:$versions.nav"
+        androidTestImplementation "androidx.navigation:navigation-testing:$versions.nav"
+        implementation "androidx.navigation:navigation-compose:$versions.navCompose"
+    }
+
+    activityKtx = dependencyGroup {
+        implementation "androidx.activity:activity-ktx:$versions.activity"
+    }
+
+    fragmentKtx = dependencyGroup {
+        implementation "androidx.fragment:fragment-ktx:$versions.fragment"
+        debugImplementation("androidx.fragment:fragment-testing:$versions.fragment") {
+            exclude group: 'androidx.test', module: 'monitor'
+        }
+    }
+
+    rxJava = dependencyGroup {
+        implementation "io.reactivex.rxjava3:rxkotlin:$versions.rxKotlin"
+        implementation "io.reactivex.rxjava3:rxandroid:$versions.rxKotlin"
+        implementation "io.reactivex.rxjava3:rxjava:$versions.rxJava"
+    }
+
+    retrofit = dependencyGroup {
+        implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+        implementation "com.squareup.retrofit2:adapter-rxjava3:$versions.retrofit"
+        implementation "com.squareup.retrofit2:converter-jackson:$versions.retrofit"
+    }
+
+    okHttp = dependencyGroup {
+        implementation "com.squareup.okhttp3:okhttp:$versions.okHttp"
+        implementation "com.squareup.okhttp3:logging-interceptor:$versions.okHttp"
+    }
+
+    development = dependencyGroup {
+        implementation "com.jakewharton.timber:timber:$versions.timber"
+        debugImplementation "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary"
+    }
+
+    support = dependencyGroup {
+        implementation "com.android.support:support-annotations:$versions.supportAnnotations"
+    }
+}

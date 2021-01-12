@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Android Sample App</string>
+
+    <!-- List/Search & Detail feature -->
+    <string name="search_hint">Search for beers</string>
+    <string name="no_items">No items</string>
+    <string name="title_fragment_detail">Beer profile</string>
+    <string name="title_fragment_list">Beers</string>
+    <string name="select_two_beers_button">Select two beers</string>
+    <string name="close_button">Close</string>
+    <string name="label_alcohol_by_volume">Alcohol by volume</string>
+    <string name="dialog_offline">There is no internet connection. You can check the Ranking offline</string>
+</resources>

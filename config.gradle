@@ -1,0 +1,11 @@
+ext {
+    ProjectConfig = [
+            minSdkVersion    : 25,
+            compileSdkVersion: 30,
+            buildToolsVersion: "30.0.2",
+            targetSdkVersion : 30,
+            versionMajor     : 0,
+            versionMinor     : 1,
+            versionPatch     : 0
+    ]
+}

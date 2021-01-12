@@ -1,0 +1,69 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
+    id 'org.jlleitschuh.gradle.ktlint'
+    id "com.github.ben-manes.versions" version "0.36.0"
+}
+
+apply from: "$rootProject.projectDir/config-android.gradle"
+
+android {
+    defaultConfig {
+        applicationId "me.miguelos.sample"
+
+        consumerProguardFiles "consumer-rules.pro"
+
+        testInstrumentationRunner "me.miguelos.sample.CustomTestRunner"
+
+        def props = new Properties()
+        file("$rootProject.projectDir/api.properties").withInputStream { props.load(it) }
+
+        // API
+        buildConfigField("String", "API_BASE_URL", "\"https://api.punkapi.com/v2/\"")
+        buildConfigField("boolean", "API_DEBUG_MODE", "true")
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("boolean", "API_DEBUG_MODE", "true")
+            minifyEnabled false
+        }
+        release {
+            buildConfigField("boolean", "API_DEBUG_MODE", "false")
+            minifyEnabled true
+        }
+    }
+}
+
+dependencies {
+    apply from: "$rootProject.projectDir/dependencies.gradle"
+
+    kotlin()
+    ui()
+    glide()
+    testing()
+    support()
+    di()
+    room()
+    lifecycle()
+    rxJava()
+    navigation()
+    activityKtx()
+    fragmentKtx()
+    retrofit()
+    okHttp()
+    development()
+
+    api project(path: ':libraries:punk-api-client')
+    implementation project(path: ':features:base')
+    implementation project(path: ':features:list-detail')
+}

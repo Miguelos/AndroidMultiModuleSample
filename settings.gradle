@@ -1,0 +1,6 @@
+rootProject.name = "Sample"
+
+include ':app'
+include ':libraries:punk-api-client'
+include ':features:base', ':features:list-detail'
+
